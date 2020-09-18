@@ -1,40 +1,38 @@
 #include <iostream>
 using namespace std;
-int main()
-{
-	int n,a = 100000,r1=123,r2=123,b=0;
+int main(){
+	
+	int n,i,j;
+	int min,x,y;
+	int exist;
 	cin>>n;
-	int m[n][n];
-	for(int i=0;i<n;i++)
-	{
-		for(int j=0;j<n;j++)
-		{
-			cin>>m[i][j];
-		}
+	int p[n][n];
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++)
+		cin>>p[i][j];
 	}
-	for(int i=0;i<n;i++)
-	{
-		for(int j=0;j<n;j++)
-		{ 
-			if(m[i][j] < a)
-			{
-				a = m[i][j];
-				r1 = i;
-				r2 = j;	
+
+	for(i=0;i<n;i++){
+		min=p[i][0];
+		x=i;
+		y=0;
+		for(j=0;j<n;j++){
+			if(p[i][j]<min){
+				min=p[i][j];
+				y=j;
 			}
 		}
-		for(int k=0;k<n;k++)
-		{
-			if(m[k][r1] < a)
-			{
-				b = m[k][r1];
-			}
+		for(j=0;j<n;j++){
+			if(p[x][y]<p[j][y])
+				break;
 		}
-		if(a==b)
-		{
-			break; 
+		
+		if(j>=n){
+			cout<<++x<<endl<<++y; 
+			exist=1;
 		}
 	}
-	cout<<r1<<endl<<r2;
+	if(exist==0)
+		cout<<"no";
 	return 0;
-} 
+}
